@@ -22,15 +22,15 @@ Reminder notifications will also be sent to ensure timesheet compliance. Histori
 The app can be used in the following ways:-
 - Manager to create projects & tasks and add users to project. 
 
-![Manager creating project](Images/ManagerCreatingProject.png)
+![Manager creating project](https://github.com/OfficeDev/microsoft-teams-apps-timetally/wiki/Images/ManagerCreatingProject.png)
 
-![Manager adding tasks & users](Images/ManagerAddingTasks&Users.png)
+![Manager adding tasks & users](https://github.com/OfficeDev/microsoft-teams-apps-timetally/wiki/Images/ManagerAddingTasks&Users.png)
 
 - End-users to fill timesheet and submit to manager for approval.
 
-![Manager approval](Images/ManagerApproval.png)
+![Manager approval](https://github.com/OfficeDev/microsoft-teams-apps-timetally/wiki/Images/ManagerApproval.png)
 
-![TimeSheet Request](Images/TimeSheetRequest.png)
+![TimeSheet Request](https://github.com/OfficeDev/microsoft-teams-apps-timetally/wiki/Images/TimeSheetRequest.png)
 
 - End-users can also duplicate any day's effort to other days for ease of filling timesheet.
 - Managers to review timesheets.
@@ -38,9 +38,9 @@ The app can be used in the following ways:-
 - All users and managers to receive reminder for filling timesheet to achieve timesheet compliance.
 
 ## Get Started
-Begin with the [Solution Overview](https://link-to-solution-overview-page) to read what the app does and how it works.
+Begin with the [Solution Overview](https://github.com/OfficeDev/microsoft-teams-apps-timetally/wiki/Solution-Overview) to read what the app does and how it works.
 
-When you are ready to try 'Time Tally' out, or use it in your own organization, follow the steps in the [Deployment guide](https://link-to-deployment-guide-page)
+When you are ready to try 'Time Tally' out, or use it in your own organization, follow the steps in the [Deployment guide](https://github.com/OfficeDev/microsoft-teams-apps-timetally/wiki/Deployment-Guide)
 
 ## **Legal notice**
 This app template is provided under the [MIT License](https://github.com/OfficeDev/microsoft-teams-apps-timetally/blob/master/LICENSE) terms. In addition to these terms, by using this app template you agree to the following:
