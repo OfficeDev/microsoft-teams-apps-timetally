@@ -38,7 +38,7 @@ The app can be used in the following ways:-
 - All users and managers to receive reminder for filling timesheet to achieve timesheet compliance.
 
 ## Get Started
-Begin with the [Solution Overview](https://github.com/OfficeDev/microsoft-teams-apps-timetally/wiki/Solution-Overview) to read what the app does and how it works.
+Begin with the [Solution overview](https://github.com/OfficeDev/microsoft-teams-apps-timetally/wiki/Solution-Overview) to read what the app does and how it works.
 
 When you are ready to try 'Time Tally' out, or use it in your own organization, follow the steps in the [Deployment guide](https://github.com/OfficeDev/microsoft-teams-apps-timetally/wiki/Deployment-Guide)
 
