@@ -1,0 +1,244 @@
+﻿// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+
+.request-review-container {
+    width: 100%;
+    overflow-x: hidden;
+    height: 100vh;
+
+    .button-footer {
+        position: absolute;
+        width: 89%;
+        bottom: 1rem;
+        margin-top: 1rem;
+    }
+
+    .calendar {
+        height: 13rem;
+    }
+
+    .button-footer {
+        position: absolute;
+        width: 89%;
+        bottom: 1rem;
+        margin-top: 1rem;
+    }
+
+    .calendar {
+        height:13rem;
+    }
+
+    .request-table-container {
+        height: 45vh;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    .page-content {
+        overflow-x: hidden !important;
+        overflow-y: hidden !important;
+        width: 100%;
+        height: 84vh;
+    }
+
+    .page-content {
+        overflow-x: hidden !important;
+        overflow-y: hidden !important;
+        width: 100%;
+        height: 84vh;
+    }
+
+    .page-content {
+        overflow-x: hidden !important;
+        overflow-y: hidden !important;
+        width: 100%;
+        height: 84vh;
+    }
+
+    .user-avatar {
+        margin-right: 2.4rem;
+    }
+
+    .user-name {
+        font-size: 1.6rem;
+        opacity: 0.9;
+        letter-spacing: 0;
+        line-height: 24px;
+    }
+
+    .user-subtitle {
+        font-size: 1.2rem;
+        opacity: 0.6;
+        letter-spacing: 0;
+    }
+
+    .reason-input {
+        height: 9.6rem !important;
+    }
+
+    .projects-detail-container {
+        margin-top: 1.2rem;
+        overflow-y: auto;
+        height: 17vh;
+    }
+
+    .project-container {
+        width: 26.8rem;
+    }
+
+    .project-title {
+        margin-bottom: 0.8rem;
+        color: #252423;
+        letter-spacing: 0;
+        line-height: 18px;
+    }
+
+    .project-task {
+        margin-bottom: 0.4rem;
+        letter-spacing: 0;
+        line-height: 18px;
+    }
+
+    .manage-tasks-list-container {
+        height: 5.4rem;
+
+        .subtitle-text {
+            color: #6e6e6e;
+            font-size: 1.3rem;
+
+            .high-contrast-container & {
+                color: #FFF;
+            }
+
+            .dark-container & {
+                color: #a9a8a8;
+            }
+        }
+
+        .title-text {
+            font-size: 1.7rem;
+        }
+    }
+
+    .review-request-mobile-view {
+        overflow-y: hidden;
+
+        .user-details {
+            width: 100%;
+        }
+
+        .user-avatar {
+            margin-right: 1.6rem !important;
+        }
+
+        .user-name {
+            font-size: 1.7rem;
+        }
+
+        .user-subtitle {
+            font-size: 1.3rem;
+            letter-spacing: 0;
+        }
+
+        .list-header {
+            height: 4.8rem;
+        }
+
+        .list-container {
+            height: 50vh;
+            overflow-y: auto;
+        }
+
+        .calendar-container {
+            margin-bottom: 1.9rem;
+        }
+
+        .mobile-title {
+            font-size: 1.7rem;
+            line-height: 2.2rem;
+        }
+
+        .mobile-subtitle {
+            font-size: 1.5rem;
+            line-height: 2.2rem;
+            opacity: 0.6;
+        }
+
+        .project-title-detail {
+            font-size: 1.5rem;
+        }
+
+        .projects-detail-container {
+            overflow-y: auto;
+            height: 30vh;
+        }
+    }
+
+    .desktop-subtitle {
+        opacity: 0.7;
+    }
+
+    .footer {
+        position: absolute;
+        width: 89%;
+        bottom: 1rem;
+        margin-top: 1rem;
+
+        .mobile-approve {
+            border-radius: 0.8rem;
+            width: 10rem;
+            height: 4.5rem;
+        }
+    }
+
+    .mobile-reject {
+        border-radius: 0.8rem;
+        width: 10rem;
+        height: 4.5rem;
+        border: 0.1rem solid #A6A7DC;
+    }
+}
+
+.dark-container {
+    .request-review-container {
+        .review-request-mobile-view {
+            .list-header {
+                height: 4.8rem;
+                background: #181818;
+            }
+        }
+
+        .footer {
+            position: fixed;
+            bottom: 0;
+            right: 0;
+            padding-bottom: 3.2rem;
+            padding-top: 3.2rem;
+            padding-right: 3rem;
+            background-color: #2C2C2C;
+            width: 100%;
+        }
+    }
+}
+
+.high-contrast-container {
+    .request-review-container {
+        .review-request-mobile-view {
+            .list-header {
+                height: 4.8rem;
+                background: #181818;
+            }
+        }
+
+        .footer {
+            position: fixed;
+            bottom: 0;
+            right: 0;
+            padding-bottom: 3.2rem;
+            padding-top: 3.2rem;
+            padding-right: 3rem;
+            background-color: #000000;
+            width: 100%;
+        }
+    }
+}

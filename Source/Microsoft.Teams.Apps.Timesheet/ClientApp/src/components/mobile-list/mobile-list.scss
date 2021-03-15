@@ -1,0 +1,68 @@
+﻿// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+
+.mobile-list-container .manage-mobile-list-view {
+    height: 26vh;
+    overflow-y: auto;
+}
+
+.manage-list-item-container .subtitle-text {
+    color: #6e6e6e;
+    font-size: 1.3rem;
+}
+
+.manage-list-item-container .title-text {
+    font-size: 1.7rem;
+}
+
+.manage-list-item-container .close-button {
+    cursor: pointer;
+    float: right;
+}
+
+.manage-list-item-container {
+
+    .billable-utilized-status {
+        background-color: #61AEE5;
+
+        .high-contrast-container & {
+            background-color: #1aebff;
+        }
+    }
+
+    .non-billable-utilized-status {
+        background-color: #d54130;
+
+        .high-contrast-container & {
+            background-color: #ffff01;
+        }
+    }
+}
+
+.mobile-list-container .list-header {
+    height: 4.8rem;
+    margin-top: 1.7rem;
+}
+
+.mobile-list-container .list-header .select-multiple-button {
+    color: #6E6E6E;
+}
+
+.mobile-list-container .footer {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    padding-bottom: 3rem;
+    padding-left: 2.5rem;
+    padding-right: 3rem;
+    align-content: flex-end;
+    background-color: white;
+}
+
+.mobile-list-container .footer .remove-button {
+    margin-top: 20%;
+    height: 4rem;
+    width: 16rem;
+    border-radius: 8px;
+}

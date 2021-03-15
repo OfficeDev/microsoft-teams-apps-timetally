@@ -1,0 +1,78 @@
+﻿{
+  "type": "AdaptiveCard",
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "version": "1.2",
+  "body": [
+    {
+      "type": "TextBlock",
+      "text": "${cardTitle}",
+      "wrap": true,
+      "size": "Large",
+      "weight": "Bolder"
+    },
+    {
+      "type": "Container",
+      "style": "good",
+      "bleed": true,
+      "items": [
+        {
+          "type": "ColumnSet",
+          "columns": [
+            {
+              "type": "Column",
+              "width": "stretch",
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "${date}",
+                  "wrap": true,
+                  "height": "stretch",
+                  "weight": "Bolder",
+                  "fontType": "Default"
+                }
+              ],
+              "verticalContentAlignment": "Center"
+            },
+            {
+              "type": "Column",
+              "width": "auto",
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "✔ ${statusLabel}",
+                  "wrap": true,
+                  "horizontalAlignment": "Right",
+                  "weight": "Bolder"
+                }
+              ],
+              "verticalContentAlignment": "Center"
+            }
+          ]
+        }
+      ],
+      "minHeight": "3px",
+      "height": "stretch",
+      "backgroundImage": {}
+    },
+    {
+      "type": "FactSet",
+      "facts": [
+        {
+          "title": "${projectLabel}",
+          "value": "${projectTitle}"
+        },
+        {
+          "title": "${hoursLabel}",
+          "value": "${hours}"
+        }
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "type": "Action.OpenUrl",
+      "title": "${viewTimesheetButtonText}",
+      "url": "${timesheetTabUrl}"
+    }
+  ]
+}

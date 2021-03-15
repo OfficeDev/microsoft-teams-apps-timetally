@@ -1,0 +1,18 @@
+{
+	"defaultSeverity": "error",
+	"extends": [ "tslint-microsoft-contrib/recommended" ],
+	"linterOptions": {
+		"exclude": [
+			"node_modules/**/*.ts"
+		]
+	},
+	"rules": {
+		"jsx-no-lambda": false,
+		"member-access": false,
+		"no-console": false,
+		"ordered-imports": false,
+		"quotemark": false,
+		"semicolon": true
+	},
+	"rulesDirectory": [ "node_modules/tslint-microsoft-contrib" ]
+}

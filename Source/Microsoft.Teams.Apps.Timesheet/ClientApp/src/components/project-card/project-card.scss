@@ -1,0 +1,79 @@
+﻿// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+
+.project-card-container {
+    height: 9rem;
+    width: 24rem;
+    border: 0 solid #E1E1E1;
+    box-shadow: 1px 1px 2px 1px rgba(0,0,0,0.12);
+    border-radius: 3px;
+    margin-right: 2.7rem !important;
+    margin-top: 2rem !important;
+    padding: 1rem;
+    cursor: pointer;
+
+    .dark-container & {
+        border: 0 solid #6E6E6E;
+        box-shadow: 1px 1px 2px 1px #6E6E6E;
+        background-color: #2D2C2C;
+    }
+
+    .high-contrast-container & {
+        border: 0 solid #FFF;
+        box-shadow: 1px 1px 2px 1px #FFF;
+        background-color: #000;
+    }
+
+    .circular-progress {
+        height: 6rem;
+        width: 6rem !important;
+    }
+
+    .text-container {
+        .underutilized-text {
+            color: #C4314B;
+
+            .high-contrast-container & {
+                color: #1aebff;
+            }
+
+            .dark-container & {
+                color: #C4314B;
+            }
+        }
+
+        .fully-utilized-text {
+            color: #13A40E;
+
+            .high-contrast-container & {
+                color: #1aebff;
+            }
+
+            .dark-container & {
+                color: #13A40E;
+            }
+        }
+
+        .project-title {
+            font-size: 1.6rem;
+        }
+
+        .project-subtitle {
+            color: #6E6E6E;
+
+            .high-contrast-container & {
+                color: #FFF;
+            }
+
+            .dark-container & {
+                color: #a9a8a8;
+            }
+        }
+
+        .project-text {
+            margin-bottom: 0.5rem;
+        }
+
+        width: 14rem !important;
+    }
+}

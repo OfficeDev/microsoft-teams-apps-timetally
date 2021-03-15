@@ -1,0 +1,79 @@
+{
+  "name": "timesheet",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "@fluentui/react": "^7.128.1",
+    "@fluentui/react-component-event-listener": "^0.48.0",
+    "@fluentui/react-component-ref": "^0.48.0",
+    "@fluentui/react-icons-northstar": "^0.51.4",
+    "@fluentui/react-northstar": "^0.51.4",
+    "@microsoft/applicationinsights-react-js": "^3.0.4",
+    "@microsoft/teams-js": "^1.8.0",
+    "@uifabric/icons": "^7.5.16",
+    "@uifabric/variants": "^7.2.30",
+    "@types/enzyme": "^3.10.6",
+    "@types/jest": "^26.0.19",
+    "@types/lodash": "^4.14.167",
+    "@types/pretty": "^2.0.0",
+    "axios": "^0.21.1",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.4",
+    "enzyme-to-json": "^3.5.0",
+    "guid-typescript": "1.0.9",
+    "http-status-codes": "^2.1.4",
+    "i18next": "19.4.5",
+    "i18next-xhr-backend": "^3.2.2",
+    "lodash": "^4.17.20",
+    "moment": "^2.29.1",
+    "moment-timezone": "^0.5.32",
+    "node-sass": "^4.14.1",
+    "react": "^16.10.2",
+    "react-appinsights": "^3.0.0-rc.6",
+    "react-circular-progressbar": "2.0.3",
+    "react-dom": "^16.10.2",
+    "react-donut": "1.1.3",
+    "react-i18next": "^11.7.0",
+    "react-infinite-scroller": "^1.2.4",
+    "react-intl": "4.1.1",
+    "react-router": "^5.1.2",
+    "react-router-dom": "^5.1.2",
+    "react-test-renderer": "^16.13.1",
+    "ts-jest": "^26.4.4",
+    "tslint": "^6.1.3",
+    "pretty": "^2.0.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "jest --coverage --watchAll",
+    "eject": "react-scripts eject",
+    "test:watch": "jest --watchAll",
+    "lint": "tslint src/**/*.ts{,x}"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.14.166",
+    "@types/react": "16.9.6",
+    "@types/react-dom": "16.9.2",
+    "@types/react-router-dom": "^5.1.0",
+    "react-scripts": "3.4.4",
+    "tslint-microsoft-contrib": "^6.2.0",
+    "typescript": "^3.9.3",
+    "prettier": "2.1.2"
+  }
+}
