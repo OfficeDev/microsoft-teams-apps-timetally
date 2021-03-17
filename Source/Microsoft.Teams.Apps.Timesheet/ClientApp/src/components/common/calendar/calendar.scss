@@ -1,0 +1,265 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+
+.calendar {
+    max-width: 55rem;
+    min-width: 39rem;
+    height: 16rem;
+    max-height: 16rem;
+    border: .08rem solid #E1E1E1;
+    border-radius: .3rem;
+
+    .loader {
+        margin-top: 3.5rem;
+    }
+
+    .mobile & {
+        min-width: 0;
+        border: none;
+    }
+
+    .selected-date {
+        .hours-text,
+        .date-text {
+            color: black;
+        }
+
+        &::before {
+            content: "";
+            border: 1.5px solid #F4F4FC;
+            height: 6rem;
+            position: absolute;
+            width: 3.33rem;
+            margin-top: 1.7rem;
+            border-radius: .25rem;
+            background-color: #F4F4FC;
+
+            .high-contrast-container & {
+                border-color: #ffff01;
+                background-color: #ffff01;
+            }
+        }
+    }
+
+    .selected-date {
+        &.mobile {
+            &::before {
+                content: "";
+                border: 1.5px solid #F4F4FC;
+                height: 6rem;
+                position: absolute;
+                width: 3rem;
+                margin-top: 1.7rem;
+                border-radius: 4rem;
+                background-color: #F4F4FC;
+
+                .high-contrast-container & {
+                    border-color: #ffff01;
+                    background-color: #ffff01;
+                }
+            }
+        }
+
+        .high-contrast-container & {
+            .todays-date,
+            .hours-text {
+                color: #000 !important;
+            }
+        }
+    }
+
+    .calendar-days {
+        margin: 1.3rem 0;
+
+        .week-day {
+            z-index: 1;
+        }
+
+        .date-text {
+            z-index: 1;
+            font-size: 1.2rem;
+
+            .high-contrast-container & {
+                &.todays-date::before {
+                    content: "";
+                    border: 1.5px solid #ffff01;
+                    width: 3.2rem;
+                    height: 3rem;
+                    position: absolute;
+                    margin-left: -.9rem;
+                    border-radius: .25rem;
+                    background: #ffff01;
+                    margin-top: -.5rem;
+                    z-index: -1;
+                }
+            }
+        }
+
+        .mobile.date-text {
+            z-index: 1;
+            font-size: 1.5rem;
+
+            .high-contrast-container & {
+                &.todays-date::before {
+                    content: "";
+                    border: 1.5px solid #ffff01;
+                    width: 3rem;
+                    height: 3rem;
+                    position: absolute;
+                    margin-left: -.7rem;
+                    border-radius: 3rem;
+                    background: #ffff01;
+                    margin-top: -.3rem;
+                    z-index: -1;
+                }
+            }
+        }
+
+        .hours-text {
+            z-index: 1;
+            font-size: 1.6rem;
+        }
+
+        .mobile.hours-text {
+            z-index: 1;
+            font-size: 1.7rem;
+        }
+
+        .saved-hours {
+            z-index: 1;
+            color: #6264A7;
+
+            .high-contrast-container & {
+                color: #1aebff;
+
+                ::before {
+                    content: "";
+                    border: 1.5px solid #fff;
+                    width: 3rem;
+                    height: 3rem;
+                    position: absolute;
+                    margin-left: -1rem;
+                    border-radius: 3rem;
+                }
+            }
+        }
+
+        .approved-hours {
+            z-index: 1;
+            color: #13A40E;
+
+            .high-contrast-container & {
+                color: #3ff23f;
+            }
+        }
+
+        .rejected-hours {
+            z-index: 1;
+
+            .default-container &,
+            .dark-container & {
+                color: #BD432C;
+            }
+
+            .high-contrast-container & {
+                color: #fff;
+
+                &::before {
+                    content: "";
+                    border: 1.5px solid #fff;
+                    width: 3.2rem;
+                    height: 3rem;
+                    position: absolute;
+                    margin-left: -.75rem;
+                    border-radius: .25rem;
+                    margin-top: .15rem;
+                    z-index: -1;
+                }
+
+                &.mobile::before {
+                    content: "";
+                    border: 1.5px solid #fff;
+                    width: 3rem;
+                    height: 3rem;
+                    position: absolute;
+                    margin-left: -.6rem;
+                    border-radius: 3rem;
+                    margin-top: .15rem;
+                    z-index: -1;
+                }
+            }
+        }
+
+        .default {
+            z-index: 1;
+        }
+
+        .date-text {
+            &.todays-date {
+                z-index: 1;
+                color: #E97548;
+
+                .high-contrast-container & {
+                    color: #000;
+                }
+            }
+        }
+
+        .select-to-duplicate {
+            &::before {
+                content: "";
+                border: 1.5px solid #6264A7;
+                height: 6rem;
+                position: absolute;
+                width: 3.33rem;
+                margin-top: 1.7rem;
+                border-radius: .25rem;
+
+                .high-contrast-container & {
+                    border-color: #1aebff;
+                }
+            }
+        }
+
+        .mobile.select-to-duplicate {
+            &::before {
+                content: "";
+                border: 1.5px solid #6264A7;
+                height: 6rem;
+                position: absolute;
+                width: 3rem;
+                margin-top: 1.7rem;
+                border-radius: 4rem;
+
+                .high-contrast-container & {
+                    border-color: #1aebff;
+                }
+            }
+        }
+
+        .selected-to-duplicate {
+            &::before {
+                background-color: #6264A7;
+
+                .high-contrast-container & {
+                    background-color: #1aebff;
+                    border-color: #1aebff;
+                }
+            }
+
+            .date-text,
+            .hours-text {
+                color: #FFFFFF;
+                z-index: 1;
+
+                .high-contrast-container & {
+                    color: #000;
+                }
+            }
+        }
+    }
+
+    .calendar-footer {
+        padding-left: 1rem;
+    }
+}

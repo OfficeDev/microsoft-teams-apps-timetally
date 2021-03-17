@@ -1,0 +1,64 @@
+﻿// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+
+.notification-toast {
+    max-width: 100vw;
+    width: 100vw;
+    font-size: 1.4rem;
+    z-index: 1000;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border: none;
+    height: 3.33rem;
+    padding: 0 2rem;
+
+    &.success {
+        background-color: #E5E5F1;
+
+        .mobile & {
+            background-color: #464775;
+        }
+
+        .notification {
+            border: none;
+            color: #6264A7;
+            margin: auto;
+            width: 95%;
+            text-align: center;
+
+            .mobile & {
+                color: white;
+                margin: 0;
+                text-align: unset;
+            }
+        }
+    }
+
+    &.error {
+        background-color: #F9DFE3;
+
+        .mobile & {
+            background-color: #A72037;
+        }
+
+        .notification {
+            border: none;
+            color: #A72037;
+            margin: auto;
+            width: 95%;
+            text-align: center;
+
+            .mobile & {
+                color: white;
+                margin: 0;
+                text-align: unset;
+            }
+        }
+    }
+
+    .dark-container & {
+        background-color: #323131;
+        border: 0;
+    }
+}

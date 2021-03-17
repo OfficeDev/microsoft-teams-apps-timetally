@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30611.23
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microsoft.Teams.Apps.Timesheet", "Microsoft.Teams.Apps.Timesheet\Microsoft.Teams.Apps.Timesheet.csproj", "{715F90EC-F140-47B6-ABA8-1AE077206A3F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microsoft.Teams.Apps.Timesheet.Test", "Microsoft.Teams.Apps.Timesheet.Test\Microsoft.Teams.Apps.Timesheet.Test.csproj", "{F5923057-34CA-4E3A-9068-9362DE953A47}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microsoft.Teams.Apps.Timesheet.Common", "Microsoft.Teams.Apps.Timesheet.Common\Microsoft.Teams.Apps.Timesheet.Common.csproj", "{3C7BCEC2-4BC6-4DA2-AED5-F14A70115FB4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microsoft.Teams.Apps.Timesheet.ReminderFunction", "Microsoft.Teams.Apps.Timesheet.ReminderFunction\Microsoft.Teams.Apps.Timesheet.ReminderFunction.csproj", "{D0BC9D2F-4D65-4F7E-BFE2-895BD2320C86}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{715F90EC-F140-47B6-ABA8-1AE077206A3F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{715F90EC-F140-47B6-ABA8-1AE077206A3F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{715F90EC-F140-47B6-ABA8-1AE077206A3F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{715F90EC-F140-47B6-ABA8-1AE077206A3F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F5923057-34CA-4E3A-9068-9362DE953A47}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5923057-34CA-4E3A-9068-9362DE953A47}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5923057-34CA-4E3A-9068-9362DE953A47}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5923057-34CA-4E3A-9068-9362DE953A47}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C7BCEC2-4BC6-4DA2-AED5-F14A70115FB4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C7BCEC2-4BC6-4DA2-AED5-F14A70115FB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C7BCEC2-4BC6-4DA2-AED5-F14A70115FB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C7BCEC2-4BC6-4DA2-AED5-F14A70115FB4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D0BC9D2F-4D65-4F7E-BFE2-895BD2320C86}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0BC9D2F-4D65-4F7E-BFE2-895BD2320C86}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0BC9D2F-4D65-4F7E-BFE2-895BD2320C86}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0BC9D2F-4D65-4F7E-BFE2-895BD2320C86}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9A481476-4B3E-4B15-A3A5-3255E1E1E4E3}
+	EndGlobalSection
+EndGlobal

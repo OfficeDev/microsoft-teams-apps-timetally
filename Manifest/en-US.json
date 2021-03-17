@@ -1,0 +1,9 @@
+﻿{
+  "$schema": "https://developer.microsoft.com/en-us/json-schemas/teams/v1.7/MicrosoftTeams.Localization.schema.json",
+  "name.short": "Time Tally",
+  "name.full": "Time Tally",
+  "description.short": "Make it easy for employees to fill timesheet.",
+  "description.full": "Time Tally app can be used by users to ease timesheet filling. Multiple tasks can be improved so that it is super easy for employees to fill timesheet using mobile device and managers do not have to check with employees on timesheet entry.",
+  "staticTabs[0].name": "Timesheet",
+  "staticTabs[1].name": "Manager dashboard"
+}

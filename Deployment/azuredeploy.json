@@ -1,0 +1,874 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "baseResourceName": {
+      "minLength": 1,
+      "type": "String",
+      "metadata": {
+        "description": "The base name to use for the resources that will be provisioned."
+      }
+    },
+    "botClientId": {
+      "minLength": 36,
+      "maxLength": 36,
+      "type": "String",
+      "metadata": {
+        "description": "The client Id of the bot Azure Active Directory app, e.g., 742e4567-e89b-12d3-a456-426655443586."
+      }
+    },
+    "botClientSecret": {
+      "minLength": 1,
+      "type": "SecureString",
+      "metadata": {
+        "description": "The client secret of the bot Azure Active Directory app."
+      }
+    },
+"tenantId": {
+      "defaultValue": "[subscription().tenantId]",
+      "minLength": 1,
+      "maxLength": 36,
+      "type": "String",
+      "metadata": {
+        "description": "The ID of the tenant to which the users access the bot, tab etc."
+      }
+    },
+    "subscriptionTenantId": {
+      "defaultValue": "[subscription().tenantId]",
+      "minLength": 1,
+      "maxLength": 36,
+      "type": "String",
+      "metadata": {
+        "description": "The Id of the tenant to which the app will be deployed."
+      }
+    },
+"customDomainOption": {
+      "defaultValue": "Azure Front Door",
+      "allowedValues": [
+        "Custom domain name (recommended)",
+        "Azure Front Door"
+      ],
+      "type": "String",
+      "metadata": {
+        "description": "How the app will be hosted on a domain that is not *.azurewebsites.net. Azure Front Door is an easy option that the template can set up automatically, but it comes with ongoing monthly costs. "
+      }
+    },
+"sqlAdministratorLogin": {
+      "type": "String",
+      "metadata": {
+        "description": "The administrator username of the SQL Server."
+      }
+    },
+    "sqlAdministratorLoginPassword": {
+      "type": "SecureString",
+      "metadata": {
+        "description": "The administrator password of the SQL Server."
+      }
+    },
+    "sqlPlanSize": {
+      "defaultValue": "S1",
+      "allowedValues": [
+        "S0",
+        "S1",
+        "S2",
+        "P1",
+        "P2"
+      ],
+      "type": "String",
+      "metadata": {
+        "description": "The size of the SQL Server."
+      }
+    },
+"reminderFrequency": {
+      "type": "String",
+"defaultValue": "0 0 17 * * 1-5",
+      "metadata": {
+        "description": "CRON expression for setting time and frequency of reminder notifications. By default, it will send reminder at 5 PM IST on weekdays. Refer https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-timer?tabs=csharp#ncrontab-expressions for CRON expressions."
+      }
+    },
+"timeZone": {
+      "type": "String",
+"defaultValue": "Indian Standard Time",
+      "metadata": {
+        "description": "Timezone on which reminder notifications will be sent."
+      }
+    },
+    "appDisplayName": {
+      "defaultValue": "Time Tally",
+      "minLength": 1,
+      "type": "String",
+      "metadata": {
+        "description": "App display name."
+      }
+    },
+    "appDescription": {
+      "defaultValue": "Time Tally app can be used by users to ease timesheet filling. Multiple tasks can be improved so that it is super easy for employees to fill timesheet using mobile device and managers do not have to check with employees on timesheet entry. Reminder notifications will also be sent to ensure timesheet compliance.",
+      "minLength": 1,
+      "type": "String",
+      "metadata": {
+        "description": "App description."
+      }
+    },
+    "appIconUrl": {
+      "defaultValue": "https://raw.githubusercontent.com/OfficeDev/microsoft-teams-apps-timetally/main/Manifest/color.png",
+      "minLength": 1,
+      "type": "String",
+      "metadata": {
+        "description": "The link to the icon for the app. It must resolve to a PNG file."
+      }
+    },
+    "sku": {
+      "defaultValue": "Standard",
+      "allowedValues": [
+        "Basic",
+        "Standard",
+        "Premium"
+      ],
+      "type": "String",
+      "metadata": {
+        "description": "The pricing tier for the hosting plan."
+      }
+    },
+    "planSize": {
+      "defaultValue": "1",
+      "allowedValues": [
+        "1",
+        "2",
+        "3"
+      ],
+      "type": "String",
+      "metadata": {
+        "description": "The size of the hosting plan (small, medium, or large)."
+      }
+    },
+    "location": {
+      "defaultValue": "[resourceGroup().location]",
+      "type": "String",
+      "metadata": {
+        "description": "Location for all resources."
+      }
+    },
+    "defaultCulture": {
+      "defaultValue": "en-US",
+      "minLength": 1,
+      "type": "String"
+    },
+    "manifestId": {
+      "defaultValue": "6b5bcd9e-a88d-4daa-a651-1908bb5e7cf7",
+      "minLength": 36,
+      "maxLength": 36,
+      "type": "String",
+      "metadata": {
+        "description": "Manifest Id (Required for deeplinking). This needs to be same as manifest Id provided in manifest.json file inside Manifest folder."
+      }
+    },
+    "cardCacheDurationInHour": {
+      "defaultValue": 12,
+      "type": "Int",
+      "metadata": {
+        "description": "Number of hours to cache card details in memory."
+      }
+    },
+    "userPartOfProjectsCacheDurationInHour": {
+      "defaultValue": 1,
+      "type": "Int",
+      "metadata": {
+        "description": "Number of hours to cache user's mapping with projects in memory."
+      }
+    },
+    "timesheetFreezeDayOfMonth": {
+      "defaultValue": 10,
+      "type": "Int",
+      "metadata": {
+        "description": "Date on which timesheet for previous month would be freezed."
+      }
+    },
+    "weeklyEffortsLimit": {
+      "defaultValue": 40,
+      "type": "Int",
+      "metadata": {
+        "description": "Maximum timesheet hours that can be filled in a week."
+      }
+    },
+    "dailyEffortsLimit": {
+      "defaultValue": 8,
+      "type": "Int",
+      "metadata": {
+        "description": "Maximum timesheet hours that can be filled on a day."
+      }
+    },
+    "managerProjectValidationCacheDurationInHours": {
+      "defaultValue": 12,
+      "type": "Int",
+      "metadata": {
+        "description": "Number of hours to cache manager's project mapping in memory."
+      }
+    },
+    "managerReporteesCacheDurationInHours": {
+      "defaultValue": 1,
+      "type": "Int",
+      "metadata": {
+        "description": "Number of hours to cache manager's and reportees mapping in memory."
+      }
+    },
+    "gitRepoUrl": {
+      "defaultValue": "https://github.com/OfficeDev/microsoft-teams-apps-timetally.git",
+      "type": "String",
+      "metadata": {
+        "description": "The URL to the GitHub repository to deploy."
+      }
+    },
+    "gitBranch": {
+      "defaultValue": "main",
+      "type": "String",
+      "metadata": {
+        "description": "The branch of the GitHub repository to deploy."
+      }
+    }
+  },
+  "variables": {
+    "uniqueString": "[uniquestring(subscription().subscriptionId, resourceGroup().id, parameters('baseResourceName'))]",
+    "botName": "[parameters('baseResourceName')]",
+    "botAppName": "[parameters('baseResourceName')]",
+    "functionAppName": "[concat(parameters('baseResourceName'), '-function')]",
+    "botAppDomain": "[concat(variables('botAppName'), '.azurewebsites.net')]",
+    "botAppUrl": "[concat('https://', variables('botAppDomain'))]",
+    "hostingPlanName": "[parameters('baseResourceName')]",
+    "botAppInsightsName": "[parameters('baseResourceName')]",
+    "keyVaultName": "[concat(variables('botAppName'), 'vault')]",
+    "keyVaultUrl": "[concat('https://',variables('keyVaultName'), '.vault.azure.net')]",
+    "storageAccountName": "[toLower(concat(parameters('baseResourceName'), 'storage'))]",
+    "microsoftAppId": "MicrosoftAppId",
+    "microsoftAppPassword": "MicrosoftAppPassword",
+    "sharedSkus": [
+      "Free",
+      "Shared"
+    ],
+    "isSharedPlan": "[contains(variables('sharedSkus'), parameters('sku'))]",
+    "skuFamily": "[if(equals(parameters('sku'), 'Shared'), 'D', take(parameters('sku'), 1))]",
+    "useFrontDoor": "[equals(parameters('customDomainOption'), 'Azure Front Door')]",
+    "frontDoorName": "[parameters('baseResourceName')]",
+    "frontDoorDomain": "[toLower(concat(variables('frontDoorName'), '.azurefd.net'))]",
+    "sqlServerName": "[concat(parameters('baseResourceName'), 'sqlserver')]",
+    "sqlDatabaseName": "[concat(parameters('baseResourceName'), 'db')]"
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Storage/storageAccounts",
+      "name": "[variables('storageAccountName')]",
+      "apiVersion": "2019-06-01",
+      "location": "[parameters('location')]",
+      "kind": "Storage",
+      "properties": {
+        "supportsHttpsTrafficOnly": true,
+        "allowBlobPublicAccess": false
+      },
+      "sku": {
+        "name": "Standard_LRS"
+      }
+    },
+    {
+      "type": "Microsoft.Web/serverfarms",
+      "apiVersion": "2016-09-01",
+      "name": "[variables('hostingPlanName')]",
+      "location": "[parameters('location')]",
+      "sku": {
+        "name": "[if(variables('isSharedPlan'), concat(variables('skuFamily'),'1'), concat(variables('skuFamily'),parameters('planSize')))]",
+        "tier": "[parameters('sku')]",
+        "size": "[concat(variables('skuFamily'), parameters('planSize'))]",
+        "family": "[variables('skuFamily')]",
+        "capacity": 0
+      },
+      "properties": {
+        "name": "[variables('hostingPlanName')]",
+        "hostingEnvironment": "",
+        "numberOfWorkers": 1
+      }
+    },
+    {
+      "type": "Microsoft.Web/sites",
+      "apiVersion": "2016-08-01",
+      "name": "[variables('botAppName')]",
+      "location": "[parameters('location')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Web/serverfarms', variables('hostingPlanName'))]",
+        "[resourceId('Microsoft.Insights/components/', variables('botAppInsightsName'))]"
+      ],
+      "kind": "app",
+      "identity": {
+        "type": "SystemAssigned"
+      },
+      "properties": {
+        "name": "[variables('botAppName')]",
+        "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('hostingPlanName'))]",
+        "enabled": true,
+        "reserved": false,
+        "clientAffinityEnabled": true,
+        "clientCertEnabled": false,
+        "hostNamesDisabled": false,
+        "containerSize": 0,
+        "dailyMemoryTimeQuota": 0,
+        "httpsOnly": true,
+        "siteConfig": {
+          "ftpsState": "Disabled",
+          "alwaysOn": true,
+          "appsettings": [
+            {
+              "name": "Logging:LogLevel:Default",
+              "value": "Information"
+            },
+            {
+              "name": "ApplicationInsights:InstrumentationKey",
+              "value": "[reference(resourceId('Microsoft.Insights/components/', variables('botAppInsightsName')), '2015-05-01').InstrumentationKey]"
+            },
+            {
+              "name": "ApplicationInsights:LogLevel:Default",
+              "value": "Information"
+            },
+            {
+              "name": "ApplicationInsights:LogLevel:Microsoft",
+              "value": "Information"
+            },
+            {
+              "name": "App:Id",
+              "value": "MicrosoftAppId--SecretKey"
+            },
+            {
+              "name": "App:Password",
+              "value": "MicrosoftAppPassword--SecretKey"
+            },
+            {
+              "name": "App:TenantId",
+              "value": "[parameters('tenantId')]"
+            },
+            {
+              "name": "App:AppBaseUri",
+              "value": "[concat('https://', variables('frontDoorDomain'))]"
+            },
+            {
+              "name": "App:ManifestId",
+              "value": "[parameters('manifestId')]"
+            },
+            {
+              "name": "App:CardCacheDurationInHour",
+              "value": "[parameters('cardCacheDurationInHour')]"
+            },
+            {
+              "name": "App:UserPartOfProjectsCacheDurationInHour",
+              "value": "[parameters('userPartOfProjectsCacheDurationInHour')]"
+            },
+            {
+              "name": "App:TimesheetFreezeDayOfMonth",
+              "value": "[parameters('timesheetFreezeDayOfMonth')]"
+            },
+            {
+              "name": "App:WeeklyEffortsLimit",
+              "value": "[parameters('weeklyEffortsLimit')]"
+            },
+            {
+              "name": "App:DailyEffortsLimit",
+              "value": "[parameters('dailyEffortsLimit')]"
+            },
+            {
+              "name": "App:ManagerProjectValidationCacheDurationInHours",
+              "value": "[parameters('managerProjectValidationCacheDurationInHours')]"
+            },
+            {
+              "name": "App:ManagerReporteesCacheDurationInHours",
+              "value": "[parameters('managerReporteesCacheDurationInHours')]"
+            },
+            {
+              "name": "i18n:DefaultCulture",
+              "value": "[parameters('defaultCulture')]"
+            },
+            {
+              "name": "i18n:SupportedCultures",
+              "value": "en-US"
+            },
+            {
+              "name": "WEBSITE_NODE_DEFAULT_VERSION",
+              "value": "12.18.0"
+            },
+            {
+              "name": "AzureAd:Instance",
+              "value": "https://login.microsoftonline.com"
+            },
+            {
+              "name": "AzureAd:TenantId",
+              "value": "[parameters('tenantId')]"
+            },
+            {
+              "name": "AzureAd:ValidIssuers",
+              "value": "https://login.microsoftonline.com/TENANT_ID/v2.0,https://sts.windows.net/TENANT_ID/"
+            },
+            {
+              "name": "AzureAd:ApplicationIdURI",
+              "value": "[if(variables('useFrontDoor'), concat('api://', concat(variables('frontDoorDomain'), concat('/',parameters('botClientId')))), '')]"
+            },
+            {
+              "name": "AzureAd:GraphScope",
+              "value": "openid profile offline_access https://graph.microsoft.com/User.Read.All"
+            },
+            {
+              "name": "AzureAd:ClientId",
+              "value": "MicrosoftAppId--SecretKey"
+            },
+            {
+              "name": "AzureAd:ClientSecret",
+              "value": "MicrosoftAppPassword--SecretKey"
+            },
+            {
+              "name": "UseKeyVault",
+              "value": true
+            },
+            {
+              "name": "KeyVaultUrl:BaseURL",
+              "value": "[variables('keyVaultUrl')]"
+            },
+            {
+              "name": "SITE_ROLE",
+              "value": "bot"
+            },
+            {
+              "name": "SQLStorage:ConnectionString",
+              "value": "SQLStorageConnectionString--SecretKey"
+            }
+          ],
+          "cors": {
+            "supportCredentials": true,
+            "allowedOrigins": [
+              "[concat('https://', variables('frontDoorDomain'))]"
+            ]
+          }
+        }
+      },
+      "resources": [
+        {
+          "apiVersion": "2016-08-01",
+          "name": "web",
+          "type": "sourcecontrols",
+          "condition": "[not(empty(parameters('gitRepoUrl')))]",
+          "dependsOn": [
+            "[resourceId('Microsoft.Web/sites', variables('botAppName'))]"
+          ],
+          "properties": {
+            "RepoUrl": "[parameters('gitRepoUrl')]",
+            "branch": "[parameters('gitBranch')]",
+            "IsManualIntegration": true
+          }
+        }
+      ]
+    },
+    {
+      "type": "Microsoft.Insights/components",
+      "apiVersion": "2015-05-01",
+      "name": "[variables('botAppInsightsName')]",
+      "location": "[parameters('location')]",
+      "tags": {
+        "[concat('hidden-link:', resourceGroup().id, '/providers/Microsoft.Web/sites/', variables('botAppName'))]": "Resource"
+      },
+      "properties": {
+        "Application_Type": "web",
+        "Request_Source": "rest"
+      }
+    },
+    {
+      "type": "Microsoft.Sql/servers",
+      "apiVersion": "2015-05-01-preview",
+      "name": "[variables('sqlServerName')]",
+      "location": "[parameters('location')]",
+      "properties": {
+        "administratorLogin": "[parameters('sqlAdministratorLogin')]",
+        "administratorLoginPassword": "[parameters('sqlAdministratorLoginPassword')]",
+        "version": "12.0"
+      },
+      "resources": [
+        {
+          "type": "firewallrules",
+          "apiVersion": "2015-05-01-preview",
+          "name": "AllowAllAzureIps",
+          "location": "[parameters('location')]",
+          "dependsOn": [
+            "[resourceId('Microsoft.Sql/servers', concat(variables('sqlServerName')))]"
+          ],
+          "properties": {
+            "startIpAddress": "0.0.0.0",
+            "endIpAddress": "0.0.0.0"
+          }
+        },
+        {
+          "type": "databases",
+          "apiVersion": "2020-08-01-preview",
+          "name": "[variables('sqlDatabaseName')]",
+          "location": "[parameters('location')]",
+          "dependsOn": [
+            "[resourceId('Microsoft.Sql/servers', concat(variables('sqlServerName')))]"
+          ],
+          "sku": {
+            "name": "[parameters('sqlPlanSize')]"
+          }
+        }
+      ]
+    },
+    {
+      "type": "Microsoft.BotService/botServices",
+      "apiVersion": "2018-07-12",
+      "name": "[variables('botName')]",
+      "location": "global",
+      "dependsOn": [
+        "[resourceId('Microsoft.Web/sites', variables('botAppName'))]"
+      ],
+      "sku": {
+        "name": "F0"
+      },
+      "kind": "sdk",
+      "properties": {
+        "displayName": "[parameters('appDisplayName')]",
+        "description": "[parameters('appDescription')]",
+        "iconUrl": "[parameters('appIconUrl')]",
+        "msaAppId": "[parameters('botClientId')]",
+        "endpoint": "[concat(variables('botAppUrl'), '/api/messages')]",
+        "developerAppInsightKey": "[reference(resourceId('Microsoft.Insights/components', variables('botAppInsightsName')), '2015-05-01').InstrumentationKey]"
+      },
+      "resources": [
+        {
+          "type": "Microsoft.BotService/botServices/channels",
+          "apiVersion": "2018-07-12",
+          "name": "[concat(variables('botName'), '/MsTeamsChannel')]",
+          "location": "global",
+          "dependsOn": [
+            "[concat('Microsoft.BotService/botServices/', variables('botName'))]",
+            "[resourceId('Microsoft.Web/sites', variables('functionAppName'))]"
+          ],
+          "sku": {
+            "name": "F0"
+          },
+          "properties": {
+            "channelName": "MsTeamsChannel",
+            "location": "global",
+            "properties": {
+              "isEnabled": true
+            }
+          }
+        }
+      ]
+    },
+    {
+      "type": "Microsoft.Web/sites",
+      "apiVersion": "2016-08-01",
+      "name": "[variables('functionAppName')]",
+      "location": "[parameters('location')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Web/serverfarms', variables('hostingPlanName'))]",
+        "[resourceId('Microsoft.Insights/components/', variables('botAppInsightsName'))]",
+        "[resourceId('Microsoft.Storage/storageAccounts', variables('storageAccountName'))]"
+      ],
+      "kind": "functionapp",
+      "properties": {
+        "name": "[variables('functionAppName')]",
+        "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('hostingPlanName'))]",
+        "hostingEnvironment": "",
+        "clientAffinityEnabled": false,
+        "httpsOnly": true,
+        "siteConfig": {
+          "ftpsState": "Disabled",
+          "alwaysOn": true,
+          "appSettings": [
+            {
+              "name": "PROJECT",
+              "value": "Source/Microsoft.Teams.Apps.Timesheet.ReminderFunction/Microsoft.Teams.Apps.Timesheet.ReminderFunction.csproj"
+            },
+            {
+              "name": "IsEncrypted",
+              "value": false
+            },
+            {
+              "name": "APPINSIGHTS_INSTRUMENTATIONKEY",
+              "value": "[reference(resourceId('Microsoft.Insights/components/', variables('botAppInsightsName')), '2015-05-01').InstrumentationKey]"
+            },
+            {
+              "name": "MaxNumberOfAttempts",
+              "value": 5
+            },
+            {
+              "name": "SITE_ROLE",
+              "value": "function"
+            },
+            {
+              "name": "FUNCTIONS_EXTENSION_VERSION",
+              "value": "~3"
+            },
+            {
+              "name": "FUNCTIONS_WORKER_RUNTIME",
+              "value": "dotnet"
+            },
+            {
+              "name": "WEBSITE_NODE_DEFAULT_VERSION",
+              "value": "10.14.1"
+            },
+            {
+              "name": "WEBSITE_TIME_ZONE",
+              "value": "[parameters('timeZone')]"
+            },
+            {
+              "name": "TimerInterval",
+              "value": "[parameters('reminderFrequency')]"
+            },
+            {
+              "name": "AzureWebJobsStorage",
+              "value": "[concat('DefaultEndpointsProtocol=https;AccountName=',variables('storageAccountName'),';AccountKey=',listkeys(resourceId('Microsoft.Storage/storageAccounts', variables('storageAccountName')), '2015-05-01-preview').key1,';')]"
+            },
+            {
+              "name": "AzureWebJobsDashboard",
+              "value": "[concat('DefaultEndpointsProtocol=https;AccountName=',variables('storageAccountName'),';AccountKey=',listkeys(resourceId('Microsoft.Storage/storageAccounts', variables('storageAccountName')), '2015-05-01-preview').key1,';')]"
+            },
+            {
+              "name": "ConnectionString",
+              "value": "[concat('Server=tcp:',reference(variables('sqlServerName')).fullyQualifiedDomainName,',1433;Initial Catalog=',variables('sqlDatabaseName'),';Persist Security Info=False;User ID=',parameters('sqlAdministratorLogin'),';Password=',parameters('sqlAdministratorLoginPassword'),';MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;')]"
+            },
+            {
+              "name": "MicrosoftAppId",
+              "value": "[parameters('botClientId')]"
+            },
+            {
+              "name": "MicrosoftAppPassword",
+              "value": "[parameters('botClientSecret')]"
+            },
+            {
+              "name": "AppBaseUri",
+              "value": "[concat('https://', variables('frontDoorDomain'))]"
+            },
+            {
+              "name": "i18n:DefaultCulture",
+              "value": "[parameters('defaultCulture')]"
+            },
+            {
+              "name": "ManifestId",
+              "value": "[parameters('manifestId')]"
+            }
+          ]
+        }
+      },
+      "resources": [
+        {
+          "type": "sourcecontrols",
+          "apiVersion": "2015-08-01",
+          "name": "web",
+          "dependsOn": [
+            "[resourceId('Microsoft.Web/sites', variables('functionAppName'))]"
+          ],
+          "properties": {
+            "RepoUrl": "[parameters('gitRepoUrl')]",
+            "branch": "[parameters('gitBranch')]",
+            "IsManualIntegration": true
+          },
+          "condition": "[not(empty(parameters('gitRepoUrl')))]"
+        }
+      ]
+    },
+    {
+      "type": "Microsoft.KeyVault/vaults",
+      "apiVersion": "2018-02-14",
+      "name": "[variables('keyVaultName')]",
+      "location": "[parameters('location')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Web/sites', variables('botAppName'))]"
+      ],
+      "tags": {
+        "displayName": "KeyVault"
+      },
+      "properties": {
+        "tenantId": "[parameters('subscriptionTenantId')]",
+        "accessPolicies": [
+          {
+            "objectId": "[reference(concat('Microsoft.Web/sites/', variables('botAppName')), '2018-02-01', 'Full').identity.principalId]",
+            "tenantId": "[parameters('subscriptionTenantId')]",
+            "permissions": {
+              "secrets": [
+                "get"
+              ]
+            }
+          }
+        ],
+        "sku": {
+          "name": "Standard",
+          "family": "A"
+        },
+        "networkAcls": {
+          "value": {
+            "defaultAction": "Allow",
+            "bypass": "AzureServices"
+          }
+        }
+      }
+    },
+    {
+      "type": "Microsoft.KeyVault/vaults/secrets",
+      "apiVersion": "2018-02-14",
+      "name": "[concat(variables('keyVaultName'), '/', 'MicrosoftAppId--SecretKey')]",
+      "location": "[parameters('location')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.KeyVault/vaults', variables('keyVaultName'))]"
+      ],
+      "properties": {
+        "value": "[parameters('botClientId')]"
+      }
+    },
+    {
+      "type": "Microsoft.KeyVault/vaults/secrets",
+      "apiVersion": "2018-02-14",
+      "name": "[concat(variables('keyVaultName'), '/', 'MicrosoftAppPassword--SecretKey')]",
+      "location": "[parameters('location')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.KeyVault/vaults', variables('keyVaultName'))]"
+      ],
+      "properties": {
+        "value": "[parameters('botClientSecret')]"
+      }
+    },
+    {
+      "type": "Microsoft.KeyVault/vaults/secrets",
+      "apiVersion": "2018-02-14",
+      "name": "[concat(variables('keyVaultName'), '/', 'SQLStorageConnectionString--SecretKey')]",
+      "location": "[parameters('location')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.KeyVault/vaults', variables('keyVaultName'))]"
+      ],
+      "properties": {
+        "value": "[concat('Server=tcp:',reference(variables('sqlServerName')).fullyQualifiedDomainName,',1433;Initial Catalog=',variables('sqlDatabaseName'),';Persist Security Info=False;User ID=',parameters('sqlAdministratorLogin'),';Password=',parameters('sqlAdministratorLoginPassword'),';MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;')]"
+      }
+    },
+    {
+      "type": "Microsoft.Network/frontDoors",
+      "apiVersion": "2019-04-01",
+      "name": "[variables('frontDoorName')]",
+      "location": "Global",
+      "dependsOn": [
+        "[resourceId('Microsoft.Web/sites', variables('botAppName'))]"
+      ],
+      "properties": {
+        "backendPools": [
+          {
+            "name": "backendPool1",
+            "properties": {
+              "backends": [
+                {
+                  "address": "[variables('botAppDomain')]",
+                  "backendHostHeader": "[variables('botAppDomain')]",
+                  "httpPort": 80,
+                  "httpsPort": 443,
+                  "priority": 1,
+                  "weight": 50,
+                  "enabledState": "Enabled"
+                }
+              ],
+              "healthProbeSettings": {
+                "id": "[resourceId('Microsoft.Network/frontDoors/healthProbeSettings', variables('frontDoorName'), 'healthProbeSettings1')]"
+              },
+              "loadBalancingSettings": {
+                "id": "[resourceId('Microsoft.Network/frontDoors/loadBalancingSettings', variables('frontDoorName'), 'loadBalancingSettings1')]"
+              },
+              "resourceState": "Enabled"
+            }
+          }
+        ],
+        "healthProbeSettings": [
+          {
+            "name": "healthProbeSettings1",
+            "properties": {
+              "intervalInSeconds": 255,
+              "path": "/health",
+              "protocol": "Https",
+              "resourceState": "Enabled"
+            }
+          }
+        ],
+        "frontendEndpoints": [
+          {
+            "name": "frontendEndpoint1",
+            "properties": {
+              "hostName": "[variables('frontDoorDomain')]",
+              "sessionAffinityEnabledState": "Disabled",
+              "sessionAffinityTtlSeconds": 0
+            }
+          }
+        ],
+        "loadBalancingSettings": [
+          {
+            "name": "loadBalancingSettings1",
+            "properties": {
+              "additionalLatencyMilliseconds": 0,
+              "sampleSize": 4,
+              "successfulSamplesRequired": 2
+            }
+          }
+        ],
+        "routingRules": [
+          {
+            "name": "routingRule1",
+            "properties": {
+              "frontendEndpoints": [
+                {
+                  "id": "[resourceId('Microsoft.Network/frontDoors/frontendEndpoints', variables('frontDoorName'), 'frontendEndpoint1')]"
+                }
+              ],
+              "acceptedProtocols": [
+                "Https"
+              ],
+              "patternsToMatch": [
+                "/*"
+              ],
+              "routeConfiguration": {
+                "@odata.type": "#Microsoft.Azure.FrontDoor.Models.FrontdoorForwardingConfiguration",
+                "forwardingProtocol": "HttpsOnly",
+                "backendPool": {
+                  "id": "[resourceId('Microsoft.Network/frontDoors/backendPools', variables('frontDoorName'), 'backendPool1')]"
+                }
+              },
+              "enabledState": "Enabled"
+            }
+          },
+          {
+            "name": "routingRule2",
+            "properties": {
+              "frontendEndpoints": [
+                {
+                  "id": "[resourceId('Microsoft.Network/frontDoors/frontendEndpoints', variables('frontDoorName'), 'frontendEndpoint1')]"
+                }
+              ],
+              "acceptedProtocols": [
+                "Https"
+              ],
+              "patternsToMatch": [
+                "/api/*"
+              ],
+              "routeConfiguration": {
+                "@odata.type": "#Microsoft.Azure.FrontDoor.Models.FrontdoorRedirectConfiguration",
+                "customFragment": null,
+                "customHost": "[variables('botAppDomain')]",
+                "customPath": "",
+                "redirectProtocol": "HttpsOnly",
+                "customQueryString": null,
+                "redirectType": "PermanentRedirect"
+              },
+              "enabledState": "Enabled"
+            }
+          }
+        ],
+        "enabledState": "Enabled",
+        "friendlyName": "[variables('frontDoorName')]"
+      },
+      "condition": "[variables('useFrontDoor')]"
+    }
+  ],
+  "outputs": {
+    "botId": {
+      "type": "String",
+      "value": "[parameters('botClientId')]"
+    },
+    "appDomain": {
+      "type": "String",
+      "value": "[if(variables('useFrontDoor'), variables('frontDoorDomain'), concat('Please create a custom domain name for ', variables('botAppDomain'), ' and use that in the manifest'))]"
+    }
+  }
+}

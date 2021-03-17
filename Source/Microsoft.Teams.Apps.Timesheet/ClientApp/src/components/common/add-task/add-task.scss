@@ -1,0 +1,73 @@
+﻿// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+
+.add-task-container {
+    .add-row-button {
+        margin-top: 1rem;
+        width: 12.6rem;
+        margin-left: 2.5rem;
+    }
+
+    .action-button {
+        width: 3.2rem;
+    }
+
+    .add-task-icon {
+        font-size: 2.4rem;
+    }
+
+    .input-title {
+        font-size: 1.2rem;
+        color: #6E6E6E;
+        letter-spacing: -0.07px;
+        line-height: 16px;
+        margin-bottom: 1rem;
+        margin-left: 1rem;
+    }
+
+    .mobile-input {
+        width: 100%;
+    }
+
+    .mobile-input-container {
+        height: 7.2rem;
+    }
+
+    .add-button {
+        font-size: 1.5rem;
+    }
+
+    .input-rows-desktop {
+        max-height: 78vh;
+        overflow-y: auto;
+    }
+
+    .input-rows-mobile {
+        max-height: 78vh;
+        overflow-y: auto;
+    }
+
+    .full-width.add-task-datepicker {
+        width: 15.5rem !important;
+    }
+
+    .footer {
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        width: 100%;
+        padding-bottom: 3rem;
+        padding-left: 2.5rem;
+        padding-right: 3rem;
+        align-content: flex-end;
+        background-color: white;
+
+        .dark-container & {
+            background-color: #2D2C2C;
+        }
+
+        .high-contrast-container & {
+            background-color: #000;
+        }
+    }
+}

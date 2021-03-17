@@ -1,0 +1,50 @@
+﻿// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+
+.utilization-table-container {
+
+    .utilization-table {
+        overflow-y: auto;
+        overflow-x: hidden;
+        max-height: 60vh;
+    }
+
+    .status-web-bullets {
+        height: 0.8rem !important;
+        width: 0.8rem !important;
+    }
+
+    .billable-utilized-status {
+        background-color: #61AEE5;
+
+        .high-contrast-container & {
+            background-color: #1aebff;
+        }
+    }
+
+    .non-billable-utilized-status {
+        background-color: #d54130;
+
+        .high-contrast-container & {
+            background-color: #ffff01;
+        }
+    }
+
+    .close-button {
+        cursor: pointer;
+    }
+
+    .table-text {
+        font-size: 1.4rem;
+    }
+
+    .action-icon {
+        font-size: 1.6rem;
+    }
+
+    .manage-request-content {
+        .error-container {
+            position: relative;
+        }
+    }
+}

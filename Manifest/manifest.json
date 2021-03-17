@@ -1,0 +1,76 @@
+{
+  "$schema": "https://developer.microsoft.com/en-us/json-schemas/teams/v1.7/MicrosoftTeams.schema.json",
+  "manifestVersion": "1.7",
+  "version": "1.0.0",
+  "id": "6b5bcd9e-a88d-4daa-a651-1908bb5e7cf7",
+  "packageName": "com.microsoft.teams.timesheet",
+  "developer": {
+    "name": "<<companyName>>",
+    "websiteUrl": "<<websiteUrl>>",
+    "privacyUrl": "<<privacyUrl>>",
+    "termsOfUseUrl": "<<termsOfUseUrl>>"
+  },
+  "localizationInfo": {
+    "defaultLanguageTag": "en",
+    "additionalLanguages": [
+      {
+        "languageTag": "en-US",
+        "file": "en-US.json"
+      }
+    ]
+  },
+  "icons": {
+    "color": "color.png",
+    "outline": "outline.png"
+  },
+  "name": {
+    "short": "Time Tally",
+    "full": "Time Tally"
+  },
+  "description": {
+    "short": "Make it easy for employees to fill timesheet.",
+    "full": "Time Tally app can be used by users to ease timesheet filling. Multiple tasks can be improved so that it is super easy for employees to fill timesheet using mobile device and managers do not have to check with employees on timesheet entry."
+  },
+  "accentColor": "#FFFFFF",
+  "staticTabs": [
+    {
+      "entityId": "timesheet",
+      "name": "Timesheet",
+      "contentUrl": "https://<<appDomain>>/fill-timesheet",
+      "websiteUrl": "https://<<appDomain>>/fill-timesheet",
+      "scopes": [
+        "personal"
+      ]
+    },
+    {
+      "entityId": "manager-dashboard",
+      "name": "Manager dashboard",
+      "contentUrl": "https://<<appDomain>>/manager-dashboard",
+      "websiteUrl": "https://<<appDomain>>/manager-dashboard",
+      "scopes": [
+        "personal"
+      ]
+    }
+  ],
+  "bots": [
+    {
+      "botId": "<<botId>>",
+      "scopes": [
+        "personal"
+      ],
+      "supportsFiles": false,
+      "isNotificationOnly": true
+    }
+  ],
+  "permissions": [
+    "identity",
+    "messageTeamMembers"
+  ],
+  "validDomains": [
+    "<<appDomain>>"
+  ],
+  "webApplicationInfo": {
+    "id": "<<botId>>",
+    "resource": "api: //<<appDomain>>/<<botId>>"
+  }
+}

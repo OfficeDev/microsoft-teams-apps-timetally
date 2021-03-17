@@ -1,0 +1,56 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+
+.projects {
+    margin: 1rem;
+    width: 100%;
+
+    .accordion-indicator-disabled {
+        background-image: none;
+        width: 0;
+    }
+
+    .projects-separator {
+        margin: 0 -2.4rem;
+    }
+
+    .project:not(:first-child) {
+        margin-top: 1.92rem;
+    }
+
+    .task {
+        height: 4.67rem;
+
+        .mobile & {
+            height: 6rem;
+        }
+    }
+
+    .new-task {
+        margin: .5rem 0 .7rem !important;
+    }
+
+    .tasks-separator {
+        padding: 0 !important;
+
+        > :not(:last-child) {
+            .mobile & {
+                padding: 0 !important;
+            }
+        }
+    }
+
+    .tasks-container {
+        margin-top: 1.25rem;
+        background: #F3F2F1;
+        padding: 0 1rem;
+
+        .dark-container & {
+            background-color: #484644;
+        }
+
+        .high-contrast-container & {
+            background-color: #000;
+        }
+    }
+}

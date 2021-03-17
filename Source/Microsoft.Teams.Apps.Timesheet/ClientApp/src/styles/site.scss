@@ -1,0 +1,71 @@
+﻿// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+
+.container-div {
+    height: 96vh;
+    width: 100vw;
+    position: fixed;
+}
+
+.default-container {
+    .container-div & {
+        height: auto;
+        width: 100%;
+        background: #FFFFFF;
+    }
+}
+
+.dark-container {
+    .container-div & {
+        height: auto;
+        width: 100%;
+        background: #201F1F;
+    }
+}
+
+.high-contrast-container {
+    .container-div & {
+        height: auto;
+        width: 100%;
+        background: black;
+    }
+}
+
+.task-module-container {
+    width: 100%;
+    padding: 1.5rem;
+}
+
+.container-subdiv {
+    max-height: 70vh;
+    overflow-y: auto;
+    width: auto;
+}
+
+.container-subdiv-main {
+    max-height: 70vh;
+    width: auto;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.task-module-container {
+    height: 100vh;
+    padding: 1.5rem 3.2rem 2.6rem;
+    width: 100%;
+}
+
+.error-message {
+    text-align: center;
+    width: 80%;
+    height: 10rem;
+    position: absolute;
+    top: 4rem;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    font-size: 1.5rem;
+}
