@@ -27,12 +27,15 @@ The app can be used in the following ways:-
 
 - End-users to fill timesheet and submit to manager for approval.
 
+![Fill timesheet](https://github.com/OfficeDev/microsoft-teams-apps-timetally/wiki/Images/FillTimesheet.PNG)
+
+- Managers to review timesheets.
+
 ![Manager approval](https://github.com/OfficeDev/microsoft-teams-apps-timetally/wiki/Images/ManagerApproval.png)
 
 ![TimeSheet Request](https://github.com/OfficeDev/microsoft-teams-apps-timetally/wiki/Images/TimeSheetRequest.png)
 
 - End-users can also duplicate any day's effort to other days for ease of filling timesheet.
-- Managers to review timesheets.
 - Managers to view and analyze project utilization with respect to billable and non-billable hours.
 - All users and managers to receive reminder for filling timesheet to achieve timesheet compliance.
 
