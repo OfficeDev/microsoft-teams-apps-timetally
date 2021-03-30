@@ -19,5 +19,10 @@ namespace Microsoft.Teams.Apps.Timesheet.Models
         /// Gets or sets maximum hours can be filled in a week.
         /// </summary>
         public int WeeklyEffortsLimit { get; set; }
+
+        /// <summary>
+        /// Gets or sets maximum hours can be filled in a day.
+        /// </summary>
+        public int DailyEffortsLimit { get; set; }
     }
 }

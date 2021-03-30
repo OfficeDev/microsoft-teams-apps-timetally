@@ -146,8 +146,8 @@ namespace Microsoft.Teams.Apps.Timesheet.Controllers
                     return this.Ok(result);
                 }
 
-                this.RecordEvent("Submit timesheet- The HTTP POST call to submit timesheet has been failed.", RequestType.Failed);
-                return this.StatusCode((int)HttpStatusCode.InternalServerError, "Unable to submit timesheets.");
+                this.RecordEvent("Submit timesheet- The HTTP POST call to submit timesheet has been failed. No timesheets found to be submitted.", RequestType.Failed);
+                return this.StatusCode((int)HttpStatusCode.NotFound, "Unable to submit timesheets as there are no timesheets found to be submitted.");
             }
             catch (Exception ex)
             {

@@ -180,5 +180,7 @@
   "overBillableTargetLabel": "Over {{hour}} hours billable target",
   "overNonBillableTargetLabel": "Over {{hour}} hours non-billable target",
   "targetHourLabel": "Target - {{hour}} hours",
-  "currentHourLabel": "Current - {{hour}} hours"
+  "currentHourLabel": "Current - {{hour}} hours",
+  "noValidTimesheetsToBeSubmitted": "No timesheets found to submit",
+  "invalidSourceDateEffortsErrorMessage": "Save entry for {{sourceDate}} before duplicating"
 }

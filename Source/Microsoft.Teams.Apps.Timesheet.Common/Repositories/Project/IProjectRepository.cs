@@ -55,8 +55,10 @@ namespace Microsoft.Teams.Apps.Timesheet.Common.Repositories
         /// Get all active projects whose start date is greater than and end date is less than current date.
         /// </summary>
         /// <param name="managerUserObjectId">The manager user object Id who created a project.</param>
+        /// <param name="startDate">Start date of the date range.</param>
+        /// <param name="endDate">End date of the date range.</param>
         /// <returns>Returns list of projects.</returns>
-        Task<IEnumerable<Project>> GetActiveProjectsAsync(Guid managerUserObjectId);
+        Task<IEnumerable<Project>> GetActiveProjectsAsync(Guid managerUserObjectId, DateTime startDate, DateTime endDate);
 
         /// <summary>
         /// Get project details by project Id.

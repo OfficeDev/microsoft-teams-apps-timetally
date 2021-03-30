@@ -799,16 +799,6 @@ class ManagerDashboard extends React.Component<IManagerDashboardProps, IManagerD
             </Flex>);
     }
 
-    /**
-     * Converts local date to UTC date.
-     * @param date The date to be converted.
-     */
-    getUtcDate = (date: Date) => {
-        let utcDate = Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate(),
-            date.getUTCHours(), date.getUTCMinutes(), date.getUTCSeconds());
-        return new Date(utcDate);
-    }
-
     /** 
      * Gets active and approve projects details for current month 
      */
@@ -819,11 +809,7 @@ class ManagerDashboard extends React.Component<IManagerDashboardProps, IManagerD
         let firstDate = new Date(date.getFullYear(), new Date().getMonth(), 1);
         let endDate = new Date(date.getFullYear(), new Date().getMonth() + 1, 0);
 
-        // Get first date and last date of current month
-        let firstDay = this.getUtcDate(firstDate);
-        let lastDay = this.getUtcDate(endDate);
-
-        let response = await getDashboardProjectsAsync(firstDay, lastDay, this.handleTokenAccessFailure);
+        let response = await getDashboardProjectsAsync(firstDate, endDate, this.handleTokenAccessFailure);
         if (response && response.status === StatusCodes.OK && response.data) {
             this.setState({
                 dashboardProjects: response.data,

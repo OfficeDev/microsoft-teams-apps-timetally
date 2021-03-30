@@ -303,7 +303,7 @@ namespace Microsoft.Teams.Apps.Timesheet.Tests.Helpers
                 .Setup(timesheetRepo => timesheetRepo.GetTimesheetRequestsByProjectIds(It.IsAny<IEnumerable<Guid>>(), It.IsAny<TimesheetStatus>(), It.IsAny<DateTime>(), It.IsAny<DateTime>()))
                 .Returns(this.approvedTimesheets.AsEnumerable());
             this.projectRepository
-                .Setup(projectRepo => projectRepo.GetActiveProjectsAsync(It.IsAny<Guid>()))
+                .Setup(projectRepo => projectRepo.GetActiveProjectsAsync(It.IsAny<Guid>(), It.IsAny<DateTime>(), It.IsAny<DateTime>()))
                 .Returns(Task.FromResult(new List<Project>
                 {
                     project,
@@ -319,7 +319,7 @@ namespace Microsoft.Teams.Apps.Timesheet.Tests.Helpers
             // ASSERT
             Assert.AreEqual(TestData.ExpectedDashboardProjects.Count(), result.Count());
             this.timesheetRepository.Verify(timesheetRepo => timesheetRepo.GetTimesheetRequestsByProjectIds(It.IsAny<IEnumerable<Guid>>(), It.IsAny<TimesheetStatus>(), It.IsAny<DateTime>(), It.IsAny<DateTime>()), Times.AtLeastOnce());
-            this.projectRepository.Verify(projectRepo => projectRepo.GetActiveProjectsAsync(It.IsAny<Guid>()), Times.AtLeastOnce());
+            this.projectRepository.Verify(projectRepo => projectRepo.GetActiveProjectsAsync(It.IsAny<Guid>(), It.IsAny<DateTime>(), It.IsAny<DateTime>()), Times.AtLeastOnce());
         }
 
         /// <summary>
@@ -336,7 +336,7 @@ namespace Microsoft.Teams.Apps.Timesheet.Tests.Helpers
                 .Setup(timesheetRepo => timesheetRepo.GetTimesheetRequestsByProjectIds(It.IsAny<IEnumerable<Guid>>(), It.IsAny<TimesheetStatus>(), It.IsAny<DateTime>(), It.IsAny<DateTime>()))
                 .Returns(this.approvedTimesheets.AsEnumerable());
             this.projectRepository
-                .Setup(projectRepo => projectRepo.GetActiveProjectsAsync(It.IsAny<Guid>()))
+                .Setup(projectRepo => projectRepo.GetActiveProjectsAsync(It.IsAny<Guid>(), It.IsAny<DateTime>(), It.IsAny<DateTime>()))
                 .Returns(Task.FromResult(Enumerable.Empty<Project>()));
 
             var managerUserObjectId = Guid.NewGuid();
@@ -348,7 +348,7 @@ namespace Microsoft.Teams.Apps.Timesheet.Tests.Helpers
 
             // ASSERT
             Assert.IsTrue(result.IsNullOrEmpty());
-            this.projectRepository.Verify(projectRepo => projectRepo.GetActiveProjectsAsync(It.IsAny<Guid>()), Times.Once());
+            this.projectRepository.Verify(projectRepo => projectRepo.GetActiveProjectsAsync(It.IsAny<Guid>(), It.IsAny<DateTime>(), It.IsAny<DateTime>()), Times.Once());
             this.timesheetRepository.Verify(timesheetRepo => timesheetRepo.GetTimesheetRequestsByProjectIds(It.IsAny<IEnumerable<Guid>>(), It.IsAny<TimesheetStatus>(), It.IsAny<DateTime>(), It.IsAny<DateTime>()), Times.Never());
         }
     }

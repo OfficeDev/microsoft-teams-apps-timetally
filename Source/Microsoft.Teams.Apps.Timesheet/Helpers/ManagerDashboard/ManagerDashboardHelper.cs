@@ -100,7 +100,7 @@ namespace Microsoft.Teams.Apps.Timesheet.Helpers
         /// <returns>Returns list of dashboard projects.</returns>
         public async Task<IEnumerable<DashboardProjectDTO>> GetDashboardProjectsAsync(Guid managerUserObjectId, DateTime startDate, DateTime endDate)
         {
-            var projects = await this.repositoryAccessors.ProjectRepository.GetActiveProjectsAsync(managerUserObjectId);
+            var projects = await this.repositoryAccessors.ProjectRepository.GetActiveProjectsAsync(managerUserObjectId, startDate, endDate);
 
             if (projects.IsNullOrEmpty())
             {
