@@ -509,6 +509,16 @@ class FillTimesheet extends React.Component<IFillTimesheetProps, IFillTimesheetS
                 return;
             }
 
+            let sourceDateEfforts = getTotalEfforts(sourceDateTimesheet);
+            if (!sourceDateEfforts || sourceDateEfforts === 0) {
+                this.setState((prevState: IFillTimesheetState) => ({
+                    isDuplicatingEfforts: false,
+                    notification: { id: prevState.notification.id + 1, message: this.localize("invalidSourceDateEffortsErrorMessage", { sourceDate: moment(sourceDateTimesheet?.timesheetDate).format("ll") }), type: ActivityStatus.Error }
+                }));
+
+                return;
+            }
+
             let targetDates = selectedWeekdaysToDuplicate.map((userTimesheet: ITimesheet) => userTimesheet.date);
             let sourceDateTotalEfforts = getTotalEfforts(sourceDateTimesheet);
 
@@ -668,6 +678,13 @@ class FillTimesheet extends React.Component<IFillTimesheetProps, IFillTimesheetS
                             notification: { id: prevState.notification.id + 1, message: this.localize("TimesheetSubmitSuccessfulMessage"), type: ActivityStatus.Success }
                         }));
                     });
+                }
+                else if (apiResponse.status === StatusCodes.NOT_FOUND) {
+                    this.setState((prevState: IFillTimesheetState) => ({
+                        isSubmittingTimesheet: false,
+                        isSavingTimesheet: false,
+                        notification: { id: prevState.notification.id + 1, message: this.localize("noValidTimesheetsToBeSubmitted"), type: ActivityStatus.Error }
+                    }));
                 }
                 else {
                     this.setState((prevState: IFillTimesheetState) => ({

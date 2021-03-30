@@ -192,6 +192,8 @@
     },
     "dailyEffortsLimit": {
       "defaultValue": 8,
+      "minValue": 1,
+      "maxValue": 24,
       "type": "Int",
       "metadata": {
         "description": "Maximum timesheet hours that can be filled on a day."
