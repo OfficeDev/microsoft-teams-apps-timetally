@@ -63,7 +63,7 @@ namespace Microsoft.Teams.Apps.Timesheet.Controllers
                 {
                     TimesheetFreezeDayOfMonth = this.botOptions.Value.TimesheetFreezeDayOfMonth,
                     WeeklyEffortsLimit = this.botOptions.Value.WeeklyEffortsLimit,
-                    DailyEffortsLimit = this.botOptions.Value.DailyEffortsLimit
+                    DailyEffortsLimit = this.botOptions.Value.DailyEffortsLimit,
                 };
 
                 this.RecordEvent("Get validation parameters- The HTTP GET call to get resources has been succeeded.", RequestType.Succeeded);
