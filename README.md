@@ -14,6 +14,8 @@ urlFragment: microsoft-teams-apps-timetally
 | [Documentation](https://github.com/OfficeDev/microsoft-teams-apps-timetally/wiki) | [Deployment guide](https://github.com/OfficeDev/microsoft-teams-apps-timetally/wiki/Deployment-Guide) | [Architecture](https://github.com/OfficeDev/microsoft-teams-apps-timetally/wiki/Solution-Overview) |
 | ---- | ---- | ---- |
 
+## Note: This is a sample app for Microsoft Teams platform capabilities. The code is not actively managed by Microsoft. The complete source code is available, which allows you to explore it in detail or fork the code and alter it to meet your specific requirements. 
+
 Time Tally app enables users to ease timesheet filling. Multiple tasks can be included in a project, and multiple projects assigned to employees, so that it is super easy for them to fill timesheet using mobile device and managers do not have to check with employees on timesheet entry. Managers get to view the project utilization based on resource & approve/reject the entries. Reminder notifications will also be sent to ensure timesheet compliance. Historical data and utilizations will also be shown for analytics.
 
 ## Key Features
