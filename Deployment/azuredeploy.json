@@ -24,7 +24,7 @@
         "description": "The client secret of the bot Azure Active Directory app."
       }
     },
-"tenantId": {
+    "tenantId": {
       "defaultValue": "[subscription().tenantId]",
       "minLength": 1,
       "maxLength": 36,
@@ -42,7 +42,7 @@
         "description": "The Id of the tenant to which the app will be deployed."
       }
     },
-"customDomainOption": {
+    "customDomainOption": {
       "defaultValue": "Azure Front Door",
       "allowedValues": [
         "Custom domain name (recommended)",
@@ -53,7 +53,7 @@
         "description": "How the app will be hosted on a domain that is not *.azurewebsites.net. Azure Front Door is an easy option that the template can set up automatically, but it comes with ongoing monthly costs. "
       }
     },
-"sqlAdministratorLogin": {
+    "sqlAdministratorLogin": {
       "type": "String",
       "metadata": {
         "description": "The administrator username of the SQL Server."
@@ -79,16 +79,16 @@
         "description": "The size of the SQL Server."
       }
     },
-"reminderFrequency": {
+    "reminderFrequency": {
       "type": "String",
-"defaultValue": "0 0 17 * * 1-5",
+      "defaultValue": "0 0 17 * * 1-5",
       "metadata": {
         "description": "CRON expression for setting time and frequency of reminder notifications. By default, it will send reminder at 5 PM IST on weekdays. Refer https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-timer?tabs=csharp#ncrontab-expressions for CRON expressions."
       }
     },
-"timeZone": {
+    "timeZone": {
       "type": "String",
-"defaultValue": "Indian Standard Time",
+      "defaultValue": "Indian Standard Time",
       "metadata": {
         "description": "Timezone on which reminder notifications will be sent."
       }
@@ -130,7 +130,7 @@
       }
     },
     "planSize": {
-      "defaultValue": "1",
+      "defaultValue": "2",
       "allowedValues": [
         "1",
         "2",
