@@ -5,10 +5,10 @@
   "id": "6b5bcd9e-a88d-4daa-a651-1908bb5e7cf7",
   "packageName": "com.microsoft.teams.timesheet",
   "developer": {
-    "name": "<<companyName>>",
-    "websiteUrl": "<<websiteUrl>>",
-    "privacyUrl": "<<privacyUrl>>",
-    "termsOfUseUrl": "<<termsOfUseUrl>>"
+    "name": "M365",
+    "websiteUrl": "https://bing.com",
+    "privacyUrl": "https://bing.com",
+    "termsOfUseUrl": "https://bing.com"
   },
   "localizationInfo": {
     "defaultLanguageTag": "en",
@@ -24,8 +24,8 @@
     "outline": "outline.png"
   },
   "name": {
-    "short": "Time Tally",
-    "full": "Time Tally"
+    "short": "Time Tally V2",
+    "full": "Time Tally V2"
   },
   "description": {
     "short": "Make it easy for employees to fill timesheet.",
@@ -36,8 +36,8 @@
     {
       "entityId": "timesheet",
       "name": "Timesheet",
-      "contentUrl": "https://<<appDomain>>/fill-timesheet",
-      "websiteUrl": "https://<<appDomain>>/fill-timesheet",
+      "contentUrl": "https://timetallyv2.azurefd.net/fill-timesheet",
+      "websiteUrl": "https://timetallyv2.azurefd.net/fill-timesheet",
       "scopes": [
         "personal"
       ]
@@ -45,8 +45,8 @@
     {
       "entityId": "manager-dashboard",
       "name": "Manager dashboard",
-      "contentUrl": "https://<<appDomain>>/manager-dashboard",
-      "websiteUrl": "https://<<appDomain>>/manager-dashboard",
+      "contentUrl": "https://timetallyv2.azurefd.net/manager-dashboard",
+      "websiteUrl": "https://timetallyv2.azurefd.net/manager-dashboard",
       "scopes": [
         "personal"
       ]
@@ -54,7 +54,7 @@
   ],
   "bots": [
     {
-      "botId": "<<botId>>",
+      "botId": "0652928a-bebe-4c51-b90f-4c8dda81c567",
       "scopes": [
         "personal"
       ],
@@ -67,10 +67,10 @@
     "messageTeamMembers"
   ],
   "validDomains": [
-    "<<appDomain>>"
+    "timetallyv2.azurefd.net"
   ],
   "webApplicationInfo": {
-    "id": "<<botId>>",
-    "resource": "api://<<appDomain>>/<<botId>>"
+    "id": "0652928a-bebe-4c51-b90f-4c8dda81c567",
+    "resource": "api://timetallyv2.azurefd.net/0652928a-bebe-4c51-b90f-4c8dda81c567"
   }
 }
