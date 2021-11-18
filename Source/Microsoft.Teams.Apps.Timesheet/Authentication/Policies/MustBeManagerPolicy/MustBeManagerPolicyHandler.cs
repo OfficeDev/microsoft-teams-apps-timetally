@@ -61,6 +61,12 @@ namespace Microsoft.Teams.Apps.Timesheet.Authentication
         {
             context = context ?? throw new ArgumentNullException(nameof(context));
 
+            foreach (var c in context.User.Claims)
+            {
+                Console.WriteLine($"claim type: {c.Type}");
+                Console.WriteLine($"claim value: {c.Value}");
+            }
+
             var oidClaimType = "http://schemas.microsoft.com/identity/claims/objectidentifier";
 
             var oidClaim = context.User.Claims.FirstOrDefault(p => oidClaimType == p.Type);
