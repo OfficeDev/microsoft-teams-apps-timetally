@@ -7,6 +7,7 @@ namespace Microsoft.Teams.Apps.Timesheet.Authentication
 {
     using System;
     using System.Linq;
+    using System.Text;
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.Extensions.Caching.Memory;
@@ -61,18 +62,36 @@ namespace Microsoft.Teams.Apps.Timesheet.Authentication
         {
             context = context ?? throw new ArgumentNullException(nameof(context));
 
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine($"Number of claims: {context.User.Claims.Count()}");
+
+            foreach (var c in context.User.Claims)
+            {
+                sb.AppendLine($"claim type: {c.Type}");
+                sb.AppendLine($"claim value: {c.Value}");
+            }
+
+            Console.WriteLine(sb.ToString());
+
             var oidClaimType = "http://schemas.microsoft.com/identity/claims/objectidentifier";
 
             var oidClaim = context.User.Claims.FirstOrDefault(p => oidClaimType == p.Type);
 
-            foreach (var requirement in context.Requirements)
+            if (oidClaim == null)
             {
-                if (requirement is MustBeManagerPolicyRequirement)
+                throw new Exception(sb.ToString());
+            }
+            else
+            {
+                foreach (var requirement in context.Requirements)
                 {
-                    // Check if manager has reportees.
-                    if (await this.ValidateManagerReporteesAsync(oidClaim.Value))
+                    if (requirement is MustBeManagerPolicyRequirement)
                     {
-                        context.Succeed(requirement);
+                        // Check if manager has reportees.
+                        if (await this.ValidateManagerReporteesAsync(oidClaim.Value))
+                        {
+                            context.Succeed(requirement);
+                        }
                     }
                 }
             }
