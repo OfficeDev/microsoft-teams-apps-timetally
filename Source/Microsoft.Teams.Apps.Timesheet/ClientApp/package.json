@@ -27,7 +27,7 @@
     "lodash": "^4.17.20",
     "moment": "^2.29.1",
     "moment-timezone": "^0.5.32",
-    "node-sass": "^4.14.1",
+    "node-sass": "^7.0.0",
     "react": "^16.10.2",
     "react-appinsights": "^3.0.0-rc.6",
     "react-circular-progressbar": "2.0.3",
