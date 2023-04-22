@@ -71,7 +71,7 @@
     "@types/react": "16.9.6",
     "@types/react-dom": "16.9.2",
     "@types/react-router-dom": "^5.1.0",
-    "react-scripts": "3.4.4",
+    "react-scripts": "5.0.1",
     "tslint-microsoft-contrib": "^6.2.0",
     "typescript": "^3.9.3",
     "prettier": "2.1.2"
